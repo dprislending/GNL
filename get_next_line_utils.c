@@ -6,7 +6,7 @@
 /*   By: roumbare <roumbare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:39:40 by roumbare          #+#    #+#             */
-/*   Updated: 2022/06/04 21:56:08 by roumbare         ###   ########.fr       */
+/*   Updated: 2022/06/06 20:23:52 by roumbare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,83 +24,72 @@ size_t	ft_strlen(const char * s)
 	return (i);
 }
 
-size_t ft_strchr(const char *s)
+int	ft_strchr(char *s)
 {
-	size_t	i;
+	int	i;
 
-	i = 0
+	i = 0;
 	if (!s)
 		return (0);
 	while (s[i])
 	{
 		if (s[i] == '\n')
-			return ((char *)(s + i))
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	while (i >= 0)
-	{
-		if (s[i] == c)
-		{
-			return ((char *)(s + i));
-		}
-		i--;
-	}
-	return (NULL);
-}
-
-char	*ft_strdup(const char *src)
-{
-	int		i;
+	size_t	i;
+	size_t	lens;
+	size_t	lenf;
 	char	*dest;
 
 	i = 0;
-	dest = (char *)malloc(ft_strlen(src) * sizeof(char) + 1);
+	lens = ft_strlen(s);
+	if (len + start <= lens)
+		lenf = len;
+	else
+		lenf = lens - start;
+	dest = malloc((lenf + 1) * sizeof(char));
 	if (!dest)
 		return (0);
-	while (src[i])
+	while (i < lenf)
 	{
-		dest[i] = src [i];
+		dest[i] = s[i + start];
 		i++;
 	}
 	dest[i] = '\0';
 	return (dest);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t		len1;
 	size_t		len2;
+	char		*dest;
 	int			i;
 	int			j;
-	char		*dest;
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	i = 0;
-	j = 0;
-	dest = (char *)malloc((len1 + len2 + 1) * sizeof (char const));
+	dest = (char *)malloc((len1 + len2 + 1) * sizeof (char));
 	if (!dest)
 		return (0);
-	while (s1[i])
+	i = 0;
+	if (s1)
 	{
-		dest[i] = s1[i];
-		i++;
+		while (s1[i])
+		{
+			dest[i] = s1[i];
+			i++;
+		}
 	}
-	while (s2[j])
-	{
+	j = -1;
+	while (s2[++j])
 		dest[i + j] = s2[j];
-		j++;
-	}
 	dest[i + j] = '\0';
 	return (dest);
 }
