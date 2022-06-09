@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roumbare <roumbare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 21:55:59 by roumbare          #+#    #+#             */
-/*   Updated: 2022/06/09 22:21:55 by roumbare         ###   ########.fr       */
+/*   Updated: 2022/06/09 22:22:01 by roumbare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GET_NEXT_LINE_H
+#ifndef FT_GET_NEXT_LINE_BONUS_H
 # define FT_GET_NEXT_LINE_H
 
 # include       <unistd.h>
@@ -25,5 +25,6 @@ int		ft_check(char *s);
 int		ft_find_target(const char *stock);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
+
 
 #endif

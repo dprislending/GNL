@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roumbare <roumbare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:39:44 by roumbare          #+#    #+#             */
-/*   Updated: 2022/06/09 22:41:13 by roumbare         ###   ########.fr       */
+/*   Updated: 2022/06/09 22:42:49 by roumbare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include	"get_next_line_bonus.h"
 
-char*	ft_line_to_return(char *stock)
+char	*ft_line_to_return(char *stock)
 {
 	int	i;
 	int	j;
@@ -60,33 +60,33 @@ char	*ft_get_stock(char *stock)
 char *get_next_line(int fd)
 {
 	static char 	*stock;
-	char			*buff;
+	char			*buff[1024];
 	int				char_read;
 	char			*line_to_return;
 
 	line_to_return = NULL;
 	char_read = 1;
-	if ((BUFFER_SIZE <= 0) || (fd < 0 && fd > 1023))
-		return (NULL);
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buff)
+	buff[fd] = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buff[fd])
 		return (0);
+	buff[fd] = 0;
 	while (char_read && !ft_check(stock))
 	{
-		char_read = read(fd, buff, BUFFER_SIZE);
+		char_read = read(fd, buff[fd], BUFFER_SIZE);
 		if (char_read == -1)
-			return (free(buff), NULL);
-		buff[char_read] = 0;
-		if (stock != NULL && stock[0] == '\n')
-			return (free(stock), NULL);
+			return (free(buff[fd]), NULL);
+		buff[fd][char_read] = 0;
+		// if (stock != NULL && stock[0] == '\n')
+		// 	return (free(stock), NULL);
 		if (char_read <= 0 && stock == 0)
-			return (free(buff), NULL);
-		stock = ft_strjoin(stock, buff);
+			return (free(buff[fd]), NULL);
+		stock = ft_strjoin(stock, buff[fd]);
 		if (!stock)
-			return (free(buff), NULL);
+			return (free(buff[fd]), NULL);
 	}
+	free(buff[fd]);
 	if (*stock)
 		line_to_return = ft_line_to_return(stock);
 	stock = ft_get_stock(stock);
-	return (free(buff), line_to_return);
+	return (line_to_return);
 }
