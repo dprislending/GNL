@@ -6,13 +6,13 @@
 /*   By: roumbare <roumbare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:39:40 by roumbare          #+#    #+#             */
-/*   Updated: 2022/06/09 21:57:56 by roumbare         ###   ########.fr       */
+/*   Updated: 2022/06/10 20:17:31 by roumbare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char * s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
